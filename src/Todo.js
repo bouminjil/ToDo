@@ -15,6 +15,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
+import LoginForm from './LoginForm';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -103,18 +105,47 @@ const Todo = () => {
   }, [todoItems])
 
 
+
+  //Login code//
+  const adminUser={
+    email:"sahbi@sahbi.com",
+    password:"Sahbi123",
+  }
+  const[user,setUser]=useState({email:""});
+  const[error,setError]=useState("");
+
+  const Login=details=>{
+    console.log(details);
+
+    if(details.email==adminUser.email && details.password==adminUser.password)
+      {
+        console.log("Logged in");
+      setUser({
+        email:details.email,
+      });
+    }else{
+      setError("Information de connection erroné")
+    }
+  }
+
+  const Logout=()=>{
+    setUser({email:""});
+  }
+
+
   return (
 
     
     <div className={classes.root}>
-
+{(user.email !="")?(
+  <div>
 <AppBar position="static">
       <Toolbar>
      
         <Typography variant="h6" className={classes.title}>
           ToDo List
         </Typography>
-        <Button color="inherit">Deconnectée</Button>
+        <Button onClick={Logout} color="inherit">Deconnectée</Button>
       </Toolbar>
     </AppBar>
 <br></br>
@@ -137,6 +168,10 @@ const Todo = () => {
         onAddTodo={addTodoHandler} // Passing down addTodoHandler
       />
       </Paper>
+      </div>
+      ):(
+        <LoginForm Login={Login} error={error}/>
+      )}
     </div>
   );
 }
