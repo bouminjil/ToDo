@@ -1,0 +1,213 @@
+import React, { useCallback, useRef } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
+import ListItemText from '@material-ui/core/ListItemText';
+
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Alert from '@material-ui/lab/Alert';
+
+
+
+
+import PropTypes from 'prop-types';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import PersonIcon from '@material-ui/icons/Person';
+import AddIcon from '@material-ui/icons/Add';
+import Typography from '@material-ui/core/Typography';
+
+import TextField from '@material-ui/core/TextField';
+
+
+
+
+
+function SimpleDialog(props) {
+  const classes = useStyles();
+  const { onClose, selectedValue, open } = props;
+
+  const handleClose = () => {
+    onClose(selectedValue);
+  };
+
+  const handleListItemClick = (value) => {
+    onClose(value);
+  };
+
+  return (
+    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
+      <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+      
+      
+
+        
+      
+
+      <form  noValidate autoComplete="off">
+      <TextField  id="filled-basic" label="Filled" variant="filled" />
+     
+    </form>
+    <Button  
+      variant="contained"
+      color="primary"
+      endIcon={<AddIcon/>}
+      type="submit"
+      onClick={() => handleListItemClick(document.getElementById('filled-basic').value)}>
+          
+          Ok 
+        </Button>
+    </Dialog>
+    
+  );
+  
+}
+
+SimpleDialog.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  selectedValue: PropTypes.string.isRequired,
+  
+};
+
+
+
+/////////////////
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    maxWidth: '100%',
+    backgroundColor: theme.palette.background.paper,
+    button: {
+      margin: theme.spacing(1),
+    },
+  },
+}));
+
+const TodoItem = ({ todo, id, onRemoveTodo, onToggleTodoDone, onEditTodo, isDone, setCustomError }) => {
+  const removeTodoHandler = useCallback(() => onRemoveTodo(id), [id, onRemoveTodo]);
+
+  const toggleTodoDoneHandler = useCallback(() => onToggleTodoDone(id), [id, onToggleTodoDone]);
+
+ {/*} const editTodoHandler = useCallback(event => {
+    if (event.keyCode === 13) { // Detect ENTER key down
+      event.preventDefault(); // Prevent adding a new line because it's supposed to be single line
+
+      const { value } = selectedValue;
+
+      if (value.length < 3) {
+        setCustomError('Todo text is too short.');
+
+        return;
+      }
+
+      if (value.length > 20) {
+        setCustomError('Todo text is too long.');
+
+        return;
+      }
+
+      onEditTodo(id, selectedValue);
+
+      setCustomError(null) // Reset customError
+      
+      event.target.blur(); // Make the current input lost focus after finishing onEditTodo
+    }
+  }, [id, onEditTodo, setCustomError]);
+*/}
+  const checkboxRef = useRef(null);
+
+  const classes = useStyles();
+
+
+  const [open, setOpen] = React.useState(false);
+  const [selectedValue, setSelectedValue] = React.useState(todo);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (value) => {
+    setOpen(false);
+    setSelectedValue(value);
+  };
+  
+
+
+  return (
+    <div className={classes.root}>
+       <List component="nav" aria-label="secondary mailbox folders">
+        <ListItem button>
+        {/*<div>
+      <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
+      <br />
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Open simple dialog
+      </Button>
+      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+        </div>*/}
+        <Checkbox
+        ref={checkboxRef}
+        checked={!!isDone}
+        onChange={toggleTodoDoneHandler}
+        //checked={checked}
+        //onChange={handleChange}
+        inputProps={{ 'aria-label': 'primary checkbox' }}
+      />
+              {<Alert variant="filled" severity={isDone ? "success":"error"}>{isDone ? "complétée":"Nom Complétée"}</Alert>}
+
+ <span onClick={() => checkboxRef.current.click()}  />
+          <ListItemText
+
+style={{color: isDone ? 'green' : 'none'}}
+
+          defaultValue={selectedValue} // innerHTML of the editable div
+         // onKeyDown={editTodoHandler} // handle innerHTML change
+           primary={selectedValue} />
+
+<Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Edit
+      </Button>
+      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
+<Button
+        variant="contained"
+        color="secondary"
+        className={classes.button}
+        startIcon={<DeleteIcon />}
+        onClick={removeTodoHandler}
+      >
+        Delete
+      </Button>
+
+      
+        </ListItem>
+
+        </List>
+    {/*<li>
+      <input
+        type="checkbox"
+        ref={checkboxRef}
+        checked={!!isDone}
+        onChange={toggleTodoDoneHandler}
+      />
+      <span onClick={() => checkboxRef.current.click()}  />
+      <input
+        type="text"
+        defaultValue={todo} // innerHTML of the editable div
+        onKeyDown={editTodoHandler} // handle innerHTML change
+        style={{textDecoration: isDone ? 'line-through' : 'none'}}
+      />
+      <button onClick={removeTodoHandler}>
+        <span role="img" aria-labelledby="trash" />🗑️
+      </button>
+    </li>*/}
+    </div>
+  )
+};
+
+export default React.memo(TodoItem);
