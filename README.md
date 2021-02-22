@@ -22,13 +22,13 @@ npm start
 ## Preview
    ## Login
    
-![TodoLOgin](https://gitlab.com/Bouminjil/todo/-/blob/master/Login-Logout.gif)
+![TodoLOgin](Login-Logout.gif)
 
   ## Add Todo
-![AddTodo](https://gitlab.com/Bouminjil/todo/-/blob/master/AddTodo.gif)
+![AddTodo](AddTodo.gif)
 
 ## Edit Todo
-![EditTodo](https://gitlab.com/Bouminjil/todo/-/blob/master/EditTodo.gif)
+![EditTodo](EditTodo.gif)
 
 ## Edit Todo
 ![EditTodo](DeletTodo.gif)
