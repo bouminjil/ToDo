@@ -2,16 +2,15 @@
 > une application List TODO simple utilisant ** React Hooks,  ** et ** Material-UI **
 
 ## Prérequis
-- un IDE comme Visual Studio Code ;
 
-- Node ;
+- Node 12.18.0 ;
 
-- npm 5.3+ ;
+- npm 7.5.2 ;
 
 ## Installer
-Fist, clonez le repo   dans votre local. Entrez dans le dossier de  projet et exécutez
+Clonez le repo   dans votre local. Entrez dans le dossier de  projet et exécutez
 `` sh
-npm installer
+npm ci/ npm install
 
 ## Run 
 
