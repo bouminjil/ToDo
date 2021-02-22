@@ -11,7 +11,7 @@
 Clonez le repo   dans votre local. Entrez dans le dossier de  projet et exécutez
 `` sh
 npm ci/ npm install
-
+```
 ## Run 
 
 ```sh
