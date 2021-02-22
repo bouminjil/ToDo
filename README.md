@@ -10,7 +10,7 @@ npm installer
 
 ```sh
 npm start
-
+```
 
 ## Preview
 
