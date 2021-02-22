@@ -9,6 +9,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Alert from '@material-ui/lab/Alert';
 
+import Divider from '@material-ui/core/Divider';
 
 
 
@@ -135,6 +136,7 @@ const TodoItem = ({ todo, id, onRemoveTodo, onToggleTodoDone, onEditTodo, isDone
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
+    onEditTodo(id, value);
   };
   
 
@@ -143,14 +145,7 @@ const TodoItem = ({ todo, id, onRemoveTodo, onToggleTodoDone, onEditTodo, isDone
     <div className={classes.root}>
        <List component="nav" aria-label="secondary mailbox folders">
         <ListItem button>
-        {/*<div>
-      <Typography variant="subtitle1">Selected: {selectedValue}</Typography>
-      <br />
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open simple dialog
-      </Button>
-      <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
-        </div>*/}
+      
         <Checkbox
         ref={checkboxRef}
         checked={!!isDone}
@@ -159,8 +154,13 @@ const TodoItem = ({ todo, id, onRemoveTodo, onToggleTodoDone, onEditTodo, isDone
         //onChange={handleChange}
         inputProps={{ 'aria-label': 'primary checkbox' }}
       />
-              {<Alert variant="filled" severity={isDone ? "success":"error"}>{isDone ? "complétée":"Nom Complétée"}</Alert>}
+              <Divider orientation="vertical" flexItem />
+              &nbsp; &nbsp; &nbsp;
 
+              {<Alert variant="filled" severity={isDone ? "success":"error"}>{isDone ? "complétée":"Nom Complétée"}</Alert>}
+              &nbsp; &nbsp; 
+              <Divider orientation="vertical" flexItem />
+              &nbsp; &nbsp; &nbsp;
  <span onClick={() => checkboxRef.current.click()}  />
           <ListItemText
 
@@ -173,6 +173,9 @@ style={{color: isDone ? 'green' : 'none'}}
 <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         Edit
       </Button>
+      &nbsp; &nbsp;
+      <Divider orientation="vertical" flexItem />
+      &nbsp; &nbsp;
       <SimpleDialog selectedValue={selectedValue} open={open} onClose={handleClose} />
 <Button
         variant="contained"
@@ -188,24 +191,7 @@ style={{color: isDone ? 'green' : 'none'}}
         </ListItem>
 
         </List>
-    {/*<li>
-      <input
-        type="checkbox"
-        ref={checkboxRef}
-        checked={!!isDone}
-        onChange={toggleTodoDoneHandler}
-      />
-      <span onClick={() => checkboxRef.current.click()}  />
-      <input
-        type="text"
-        defaultValue={todo} // innerHTML of the editable div
-        onKeyDown={editTodoHandler} // handle innerHTML change
-        style={{textDecoration: isDone ? 'line-through' : 'none'}}
-      />
-      <button onClick={removeTodoHandler}>
-        <span role="img" aria-labelledby="trash" />🗑️
-      </button>
-    </li>*/}
+   
     </div>
   )
 };
