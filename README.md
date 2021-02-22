@@ -19,17 +19,22 @@ npm ci OU  npm install
 ```sh
 npm start
 ```
+ 
+ Ouvre sur votre navigateur  :http//localhost:3000
+
+Login : 'sahbi@sahbi.com'
+Password : 'Sahbi123'
 
 ## Preview
-   ## Login
+   ### Login
    
 ![TodoLOgin](Login-Logout.gif)
 
-  ## Add Todo
+  ### Add Todo
 ![AddTodo](AddTodo.gif)
 
-## Edit Todo
+  ### Edit Todo
 ![EditTodo](EditTodo.gif)
 
-## Edit Todo
+  ### Edit Todo
 ![EditTodo](DeletTodo.gif)
