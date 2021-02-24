@@ -41,17 +41,17 @@ function SimpleDialog(props) {
 
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
-      <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
       
-      
-
-        
+      &nbsp;
+              <Divider variant="inset"/>
       
 
       <form  noValidate autoComplete="off">
-      <TextField  id="filled-basic" label="Filled" variant="filled" />
+      <TextField  id="filled-basic" label="Edit ToDo" variant="filled" />
      
     </form>
+    &nbsp;
+              <Divider variant="inset"/>
     <Button  
       variant="contained"
       color="primary"
@@ -95,32 +95,7 @@ const TodoItem = ({ todo, id, onRemoveTodo, onToggleTodoDone, onEditTodo, isDone
 
   const toggleTodoDoneHandler = useCallback(() => onToggleTodoDone(id), [id, onToggleTodoDone]);
 
- {/*} const editTodoHandler = useCallback(event => {
-    if (event.keyCode === 13) { // Detect ENTER key down
-      event.preventDefault(); // Prevent adding a new line because it's supposed to be single line
-
-      const { value } = selectedValue;
-
-      if (value.length < 3) {
-        setCustomError('Todo text is too short.');
-
-        return;
-      }
-
-      if (value.length > 20) {
-        setCustomError('Todo text is too long.');
-
-        return;
-      }
-
-      onEditTodo(id, selectedValue);
-
-      setCustomError(null) // Reset customError
-      
-      event.target.blur(); // Make the current input lost focus after finishing onEditTodo
-    }
-  }, [id, onEditTodo, setCustomError]);
-*/}
+ 
   const checkboxRef = useRef(null);
 
   const classes = useStyles();
@@ -166,8 +141,7 @@ const TodoItem = ({ todo, id, onRemoveTodo, onToggleTodoDone, onEditTodo, isDone
 
 style={{color: isDone ? 'green' : 'none'}}
 
-          defaultValue={selectedValue} // innerHTML of the editable div
-         // onKeyDown={editTodoHandler} // handle innerHTML change
+          defaultValue={selectedValue} 
            primary={selectedValue} />
 
 <Button variant="outlined" color="primary" onClick={handleClickOpen}>

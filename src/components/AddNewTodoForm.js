@@ -42,12 +42,12 @@ const AddNewTodoForm = ({ onAddTodo, customError }) => {
     onSubmit: (values, { resetForm }) => {
       onAddTodo(values.todo);
 
-      // Reset the form after submitting successfully
+      
       resetForm();
     },
   })
 
-  // Get an error from formik.errors to show up because I don't like showing all of them at once
+ 
   const errorKeys = Object.keys(formik.errors);
 
   const aFormikError = errorKeys.length > 0 ? formik.errors[errorKeys[0]] : null;
@@ -62,15 +62,7 @@ const AddNewTodoForm = ({ onAddTodo, customError }) => {
         <InputLabel htmlFor="component-simple">what you want TO DO</InputLabel>
         <Input id="todo" value={formik.values.todo} onChange={formik.handleChange} />
       </FormControl>
-  {/*    <input
-        id="todo"
-        name="todo"
-        type="text"
-        onChange={formik.handleChange}
-        value={formik.values.todo}
-        autoComplete="off"
-        placeholder="What needs to be done?"
-  />*/}
+  
  <Button
         variant="contained"
         color="primary"
@@ -80,7 +72,7 @@ const AddNewTodoForm = ({ onAddTodo, customError }) => {
       >
         Add
       </Button>
-  {/*    <button type="submit">Add</button>*/}
+  
     </form>
     {error && <Alert variant="filled" severity="error">{error}</Alert>}
     
